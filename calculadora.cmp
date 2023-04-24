@@ -1,0 +1,81 @@
+<!--Declaração do componente aura com as interfaces que ele implementa-->
+<aura:component
+  implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction"
+  access="global"
+>
+  <!--Declaração de três atributos (num1, num2 e total) com seus respectivos tipos de dados (integer).-->
+  <aura:attribute name="num1" type="integer" />
+  <aura:attribute name="num2" type="integer" />
+  <aura:attribute name="total" type="integer" />
+
+  <!--Declaração de quatro atributos (isAdd, isSub, isMul e isDiv) do tipo boolean, que são usados para controlar qual operação matemática será executada.-->
+  <aura:attribute name="isAdd" type="boolean" default="false" />
+  <aura:attribute name="isSub" type="boolean" default="false" />
+  <aura:attribute name="isMul" type="boolean" default="false" />
+  <aura:attribute name="isDiv" type="boolean" default="false" />
+
+  <!--Criação de dois campos de entrada do tipo lightning:input para inserir os dois números a serem calculados.-->
+  <div class="slds-box slds-theme_default">
+    <lightning:input
+      name="input1"
+      label="Digite o primeiro número"
+      value="{!v.num1}"
+    />
+    <lightning:input
+      name="input2"
+      label="Digite o segundo número"
+      value="{!v.num2}"
+    />
+  </div>
+
+  <!--Criação de cinco botões do tipo slds-button para realizar as operações matemáticas (Adicionar, Subtrair, Multiplicar, Dividir e Limpar). Cada botão 
+	tem uma classe específica que define a aparência e um evento onclick que chama a operação matemática-->
+
+  <div class="slds-box slds-theme_default slds-grid slds-wrap">
+    <div class="slds-col slds-size_1-of-5">
+      <button class="slds-button slds-button_brand" onclick="{!c.Add}"
+        >Adicionar</button
+      >
+    </div>
+    <div class="slds-col slds-size_1-of-5">
+      <button class="slds-button slds-button_destructive" onclick="{!c.Sub}"
+        >Subtrair</button
+      >
+    </div>
+    <div class="slds-col slds-size_1-of-5">
+      <button class="slds-button slds-button_neutral" onclick="{!c.Mul}"
+        >Multiplicar</button
+      >
+    </div>
+    <div class="slds-col slds-size_1-of-5">
+      <button class="slds-button slds-button_outline-brand" onclick="{!c.Divi}"
+        >Dividir</button
+      >
+    </div>
+    <div class="slds-col slds-size_1-of-5">
+      <button
+        class="slds-button slds-button_neutral"
+        onclick="{!c.Clear}"
+        style="float: right;"
+        >Limpar</button
+      >
+    </div>
+  </div>
+
+  <!--Este trecho de código é responsável por mostrar o resultado da operação aritmética selecionada pelo usuário-->
+  <div class="slds-box slds-theme_default">
+    <p>Total: </p>
+    <aura:if isTrue="{!v.isAdd}">
+      <lightning:input name="total" value="{!v.total}" />
+    </aura:if>
+    <aura:if isTrue="{!v.isSub}">
+      <lightning:input name="total" value="{!v.total}" />
+    </aura:if>
+    <aura:if isTrue="{!v.isMul}">
+      <lightning:input name="total" value="{!v.total}" />
+    </aura:if>
+    <aura:if isTrue="{!v.isDiv}">
+      <lightning:input name="total" value="{!v.total}" />
+    </aura:if>
+  </div>
+</aura:component>
